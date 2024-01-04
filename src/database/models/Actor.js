@@ -15,6 +15,9 @@ module.exports = function(sequelize, dataTypes){
         },
         rating:{
             type: dataTypes.DOUBLE
+        },
+        favorite_movie_id:{
+            type: dataTypes.INTEGER
         }
     }
 
@@ -26,6 +29,11 @@ module.exports = function(sequelize, dataTypes){
     let Actor = sequelize.define(alias, cols, config);
 
     Actor.associate = function(models){
+        Actor.belongsTo(models.Movie, {
+            as: "movie",
+            foreignKey: "id"
+        });
+
         Actor.belongsToMany(models.Movie, {
             as: "peliculas",
             through: "actor_movie",

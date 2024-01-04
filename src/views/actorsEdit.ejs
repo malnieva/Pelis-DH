@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="titulo">Editar Actor</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <figure>
+        <img src="/img/logo-DH.png" alt="Logo Digital House">
+      </figure>
+    <h1 class="titulo">Actor a Editar:  <%= actor.title %></h1>
+    <section class="formulario">
+        <form action="/actors/edit/<%= actor.id %>" method="POST">
+            <label for="title">First Name </label>
+            <p><input type="text" name="first_name" id="first_name" value="<%= actor.first_name %>" required></p>
+            <label for="last_name">Last Name </label>
+            <p><input type="text" name="last_name" id="last_name" value="<%= actor.last_name %>" required></p>
+            <label for="rating">Rating </label>
+            <p><input type="number" name="rating" id="rating" value="<%= actor.rating %>" required></p>
+            <div>
+                <label for="">Pelicula</label>
+                <select name="movie">
+                    <% for( let i = 0; i < movies.length; i++ ) { %>
+                        <% if (movies[i].id == actor.favorite_movie_id) { %>
+                            <option value="<%= movies[i].id %>" selected>
+                                <%= movies[i]?.title || 'No tiene ' %>
+                            </option>
+                        <% } else { %>
+                            <option value="<%= movies[i].id %>">
+                                <%= movies[i]?.title || 'No tiene ' %>
+                            </option>
+                        <% } %>
+                    <% } %>
+                </select>
+            </div>
+            <br>
+            <p> <button class="botonAgregar" type="submit">Actualizar</button>
+        
+            <a  class="botonVolver" href="/actors">Listado de Actores</a></p>
+        </form>
+    </section>
+</body>
+
+</html>
