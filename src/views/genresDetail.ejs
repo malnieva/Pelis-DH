@@ -15,6 +15,12 @@
     <br>
     <p>NAME: <%= genre.name %> </p>
     <p>RANKIG: <%= genre.ranking %> </p>
-
+    <br>
+    <a href="/genres/edit/<%= genre.id %>">
+        <button>Editar</button>
+    </a>
+    <a href="/genres/delete/<%= genre.id %>">
+        <button>Borrar</button>
+    </a>
 </body>
 </html>
